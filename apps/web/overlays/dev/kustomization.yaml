@@ -19,3 +19,7 @@ configMapGenerator:
     behavior: replace
     files:
       - index.html
+
+images:
+  - name: nginx
+    newTag: versao-que-nao-existe
