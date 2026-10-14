@@ -4,6 +4,7 @@ kind: Kustomization
 # Reaproveita tudo o que está na base
 resources:
   - ../../base
+  - apps/web/overlays/dev/aviso.yaml
 
 # Tudo deste ambiente vai para o namespace web-dev
 namespace: web-dev
