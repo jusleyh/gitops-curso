@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: web-desafio
+  namespace: argocd
+  # Ao apagar a Application, o Argo CD também apaga os recursos que ela criou
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/SEU_USUARIO/gitops-curso.git
+    targetRevision: main
+    path: apps/web/overlays/desafio
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: web-desafio
+  # Sem "automated": o Argo CD detecta a diferença,
+  # mas só aplica quando alguém clica em SYNC.
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
