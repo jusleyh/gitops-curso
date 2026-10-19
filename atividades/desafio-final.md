@@ -70,9 +70,10 @@ Atenção: Healthy no Argo CD não garante que a aplicação responde. Teste sem
 ## Parte C — Operação do dia a dia (2 pontos)
 
 1. Promova a **Versao: v3** para dev, depois hml, depois prod — um commit por ambiente.
+- Não foi necessário promover para V3 pois todos os ambientes já estavam nessa versão.
    
 2. Alguém escala prod para 8 réplicas no cluster. Mostre o que acontece e explique.
-Resposta: O ArgoCD detectou uma divergência entre o estado definido no Git e o estado atual do cluster. Como o self-heal está habilitado,
+- Resposta: O ArgoCD detectou uma divergência entre o estado definido no Git e o estado atual do cluster. Como o self-heal está habilitado,
 a alteração manual para 8 réplicas foi revertida automaticamente para o valor definido no repositório Git, restaurando o ambiente para 2 réplicas.
 
 ## Parte D — Apresentação (1 ponto)
@@ -80,7 +81,21 @@ a alteração manual para 8 réplicas foi revertida automaticamente para o valor
 Em 2 minutos, mostre:
 
 - O problema da Parte B que foi mais difícil de achar: sintoma, evidência e correção.
+
+O terceiro erro foi, sem dúvida, o mais difícil de identificar. Diferente dos dois primeiros, que apresentavam mensagens de erro mais evidentes, esse problema não impedia a aplicação de ser criada nem os pods de iniciarem corretamente. À primeira vista, tudo parecia estar funcionando: a Application estava sincronizada, os recursos existiam no cluster e o ambiente aparentava estar saudável.
+
+A dificuldade surgiu porque o problema só apareceu durante a validação funcional da aplicação. Mesmo com os recursos criados, o acesso à página não funcionava como esperado. Isso exigiu uma investigação mais detalhada, analisando o Service, as portas configuradas e a comunicação entre o Service e o container da aplicação.
+
+Após revisar as configurações, foi identificado que o targetPort do Service estava configurado para a porta 8080, enquanto o container do Nginx escutava na porta 80. Como resultado, o tráfego chegava ao Service, mas não era encaminhado corretamente para a aplicação.
+
+A correção foi alterar o targetPort para 80, realizar commit, push e sincronizar novamente a Application. Após a alteração, o acesso à página passou a funcionar normalmente.
+
+Esse foi o erro mais desafiador porque exigiu ir além da análise dos recursos do Kubernetes e validar o comportamento real da aplicação, reforçando a importância de não confiar apenas no status do Argo CD, mas também testar efetivamente o serviço entregue ao usuário.
+
 - O `git log --oneline` com a sua sequência de commits.
+
+<img width="857" height="495" alt="image" src="https://github.com/user-attachments/assets/c9b9565a-7674-4876-8cfb-874f7e2ba041" />
+
 
 ---
 
