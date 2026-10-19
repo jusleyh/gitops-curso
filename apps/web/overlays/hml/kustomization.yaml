@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Reaproveita tudo o que está na base
+resources:
+  - ../../base
+
+# Tudo deste ambiente vai para o namespace web-hml
+namespace: web-hml
+
+# Em dev basta 1 réplica
+replicas:
+  - name: web
+    count: 2
+
+# Substitui a página da base pela página de hml
+configMapGenerator:
+  - name: web-pagina
+    behavior: replace
+    files:
+      - index.html

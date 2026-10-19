@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: web-hml
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/minsait-gitops-curso/gitops-curso.git
+    targetRevision: main
+    path: apps/web/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: web-hml
+  syncPolicy:
+    automated:
+      prune: true     
+      selfHeal: true  
+    syncOptions:
+      - CreateNamespace=true
