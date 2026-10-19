@@ -70,7 +70,10 @@ Atenção: Healthy no Argo CD não garante que a aplicação responde. Teste sem
 ## Parte C — Operação do dia a dia (2 pontos)
 
 1. Promova a **Versao: v3** para dev, depois hml, depois prod — um commit por ambiente.
+   
 2. Alguém escala prod para 8 réplicas no cluster. Mostre o que acontece e explique.
+Resposta: O ArgoCD detectou uma divergência entre o estado definido no Git e o estado atual do cluster. Como o self-heal está habilitado,
+a alteração manual para 8 réplicas foi revertida automaticamente para o valor definido no repositório Git, restaurando o ambiente para 2 réplicas.
 
 ## Parte D — Apresentação (1 ponto)
 
