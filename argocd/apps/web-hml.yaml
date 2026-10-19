@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/minsait-gitops-curso/gitops-curso.git
     targetRevision: main
-    path: apps/web/overlays/dev
+    path: apps/web/overlays/hml
   destination:
     server: https://kubernetes.default.svc
     namespace: web-hml
