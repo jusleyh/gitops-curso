@@ -12,7 +12,7 @@ replicas:
 
 images:
   - name: nginx
-    newTag: 1.27-alpinee
+    newTag: 1.27-alpine
 
 configMapGenerator:
   - name: web-pagina
