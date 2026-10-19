@@ -52,9 +52,9 @@ Você só vê o próximo problema depois de corrigir o anterior. Para cada um, p
 
 | # | Sintoma (o que você viu) | Evidência (onde viu) | Causa | Correção (commit) |
 |---|--------------------------|----------------------|-------|-------------------|
-| 1 | | | | |
-| 2 | | | | |
-| 3 | | | | |
+| 1 | Application não sincronizava. | Erro durante geração dos manifests. | Arquivo referenciado como index.htm. | Alterado para index.html. |
+| 2 | Pod não iniciava. | ImagePullBackOff. | Tag inválida 1.27-alpinee. | Alterado para 1.27-alpine. |
+| 3 | Aplicação não respondia corretamente. | Teste da página após deploy. | Service apontando para porta incorreta (8080). | Ajustado targetPort para 80. |
 
 Esta Application tem **sync manual**: depois de cada push, use REFRESH e SYNC.
 
