@@ -96,7 +96,11 @@ Esse foi o erro mais desafiador porque exigiu ir além da análise dos recursos 
 
 <img width="857" height="495" alt="image" src="https://github.com/user-attachments/assets/c9b9565a-7674-4876-8cfb-874f7e2ba041" />
 
-
+## Print das páginas web funcionando:
+-HML:
+<img width="1271" height="372" alt="image" src="https://github.com/user-attachments/assets/dd684113-1185-48b7-bbe0-7ec89e1c18d8" />
+-Desafio:
+<img width="1357" height="337" alt="image" src="https://github.com/user-attachments/assets/da0ac326-fea9-4c2b-baf8-bb8231b952bc" />
 ---
 
 ## Critérios de avaliação
